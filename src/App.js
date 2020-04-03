@@ -1,10 +1,30 @@
 import React, { Component } from 'react';
 import './App.css';
 
+// Components
 import Person from './Person/Person';
 
-class App extends Component {
+// Styling
+// import Radium, { StyleRoot } from 'radium';
+// import styled from 'styled-components';
 
+// STYLED COMPONENTS
+// const StyledButton = styled.button`
+//   background-color: ${props => props.alt ? 'red' : 'green'};
+//   color: white;
+//   font: inherit;
+//   border: 1px solid blue;
+//   padding: 8px;
+//   cursor: pointer;
+//
+//   &:hover{
+//     background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
+//     color: black;
+//   }
+// `
+
+// COMPONENT
+class App extends Component {
   state = {
     persons:[
       { id: 'asdas', name: 'Max', age: 26},
@@ -63,13 +83,20 @@ class App extends Component {
 
   render() {
 
-    const style = {
-      backgroudnColor:'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    }
+    // OG Syle for button
+    // const style = {
+    //   backgroundColor:'green',
+    //   color:'white',
+    //   font: 'inherit',
+    //   border: '1px solid blue',
+    //   padding: '8px',
+    //   cursor: 'pointer',
+    //   ':hover':{
+    //     backgroundColor: 'lightgreen',
+    //     color:'black'
+    //   }
+    // }
+    // <button style={style} onClick={ this.togglePersonsHandler }>Toggle Persons</button>
 
     // Vanilla JS Conditional Rendering
     let persons = null; // default
@@ -86,18 +113,38 @@ class App extends Component {
           })}
         </div>
       );
+      // OG conitional button CSS
+      // style.backgroundColor = 'red' // dynamically set CSS of button
+      // style[':hover'] = {
+      //   backgroundColor: 'salmon',
+      //   color:'black'
+      // }
     }
 
+    // DYNAMIC CLASSES
+    // let classes = ['red', 'bold'].join(' ');
+    const classes = []
+    if (this.state.persons.length <= 2) {
+      classes.push('red')
+    }
+    if (this.state.persons.length <=1) {
+      classes.push('bold')
+    }
+
+
     return (
-      <div className="App">
-        <button style={style} onClick={ this.togglePersonsHandler }>Toggle Persons</button>
-        { persons }
-      </div>
+        <div className="App">
+          <h1>Hi! I'm a React App</h1>
+          <p className={classes.join(' ')} >This is working</p>
+          <StyledButton alt={this.state.showPersons} onClick={ this.togglePersonsHandler }>Toggle Persons</StyledButton>
+          { persons }
+        </div>
     );
   }
 }
 
 export default App;
+// export default Radium(App);
 
 
 // OG HARDCODED PROPS
