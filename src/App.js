@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
+// import './App.css';
+import classes from './App.css';
 
 // Components
 import Person from './Person/Person';
@@ -22,6 +23,7 @@ import Person from './Person/Person';
 //     color: black;
 //   }
 // `
+// <StyledButton alt={this.state.showPersons} onClick={ this.togglePersonsHandler }>Toggle Persons</StyledButton>
 
 // COMPONENT
 class App extends Component {
@@ -100,6 +102,8 @@ class App extends Component {
 
     // Vanilla JS Conditional Rendering
     let persons = null; // default
+    // let btnClass = [classes.Button]
+    let btnClass = ''
     if (this.state.showPersons) {
       persons = (
         <div>
@@ -119,24 +123,28 @@ class App extends Component {
       //   backgroundColor: 'salmon',
       //   color:'black'
       // }
+      // btnClass.push(classes.Red)
+      btnClass = classes.Red
     }
 
     // DYNAMIC CLASSES
     // let classes = ['red', 'bold'].join(' ');
-    const classes = []
+    const assignedClasses = []
     if (this.state.persons.length <= 2) {
-      classes.push('red')
+      // assignedClasses.push('red')
+      assignedClasses.push(classes.red)
     }
     if (this.state.persons.length <=1) {
-      classes.push('bold')
+      // assignedClasses.push('bold')
+      assignedClasses.push(classes.bold)
     }
 
 
     return (
-        <div className="App">
+        <div className={classes.App}>
           <h1>Hi! I'm a React App</h1>
-          <p className={classes.join(' ')} >This is working</p>
-          <StyledButton alt={this.state.showPersons} onClick={ this.togglePersonsHandler }>Toggle Persons</StyledButton>
+          <p className={assignedClasses.join(' ')} >This is working</p>
+          <button className={btnClass} onClick={ this.togglePersonsHandler }>Toggle Persons</button>
           { persons }
         </div>
     );
