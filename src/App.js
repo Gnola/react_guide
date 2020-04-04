@@ -1,31 +1,32 @@
 import React, { Component } from 'react';
-// import './App.css';
-import classes from './App.css';
 
-// Components
-import Person from './Person/Person';
+// COMPONENTS
+  import Person from './Person/Person';
 
-// Styling
-// import Radium, { StyleRoot } from 'radium';
-// import styled from 'styled-components';
+// STYLING
+  // import './App.css'; // Using OG CSS
+  // import Radium, { StyleRoot } from 'radium'; // Using RADIUM
+  // import styled from 'styled-components'; // Using STYLED COMPONENTS
+  import classes from './App.css'; // Using CSS CLASSES
 
-// STYLED COMPONENTS
-// const StyledButton = styled.button`
-//   background-color: ${props => props.alt ? 'red' : 'green'};
-//   color: white;
-//   font: inherit;
-//   border: 1px solid blue;
-//   padding: 8px;
-//   cursor: pointer;
-//
-//   &:hover{
-//     background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
-//     color: black;
-//   }
-// `
-// <StyledButton alt={this.state.showPersons} onClick={ this.togglePersonsHandler }>Toggle Persons</StyledButton>
+    // STYLED COMPONENTS
+    // const StyledButton = styled.button`
+    //   background-color: ${props => props.alt ? 'red' : 'green'};
+    //   color: white;
+    //   font: inherit;
+    //   border: 1px solid blue;
+    //   padding: 8px;
+    //   cursor: pointer;
+    //
+    //   &:hover{
+    //     background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
+    //     color: black;
+    //   }
+    // `
+    // <StyledButton alt={this.state.showPersons} onClick={ this.togglePersonsHandler }>Toggle Persons</StyledButton>
 
-// COMPONENT
+
+// CLASS COMPONENT //
 class App extends Component {
   state = {
     persons:[
@@ -37,6 +38,7 @@ class App extends Component {
     showPersons: false
   }
 
+  // Show Persons
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
     this.setState({
@@ -54,6 +56,7 @@ class App extends Component {
   //   })
   // }
   //
+  // OG nameChangedHandler
   // nameChangedHandler = (e) => {
   //   this.setState({
   //     persons:[
@@ -63,6 +66,7 @@ class App extends Component {
   //     ]
   //   })
   // }
+
   nameChangedHandler = (e, id) => {
     const personIndex = this.state.persons.findIndex((p) => {
       return p.id === id
@@ -76,6 +80,7 @@ class App extends Component {
     })
   }
 
+  // DELETE People
   deletePersonHandler = (personIndex) => {
     // const persons = this.state.persons.slice();
     const persons = [...this.state.persons]
@@ -103,7 +108,7 @@ class App extends Component {
     // Vanilla JS Conditional Rendering
     let persons = null; // default
     // let btnClass = [classes.Button]
-    let btnClass = ''
+    let btnClass = '' // Using CSS CLASSES
     if (this.state.showPersons) {
       persons = (
         <div>
@@ -124,7 +129,7 @@ class App extends Component {
       //   color:'black'
       // }
       // btnClass.push(classes.Red)
-      btnClass = classes.Red
+      btnClass = classes.Red // Using CSS CLASSES
     }
 
     // DYNAMIC CLASSES
@@ -221,4 +226,3 @@ export default App;
 // }
 //
 // export default app;
-// HOOKS //
