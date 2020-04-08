@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 
 // COMPONENTS //
-import Person from './Person/Person';
+import Persons from '../components/Persons/Persons'; // Persons.js
+import Cockpit from '../components/Cockpit/Cockpit'; // Cockpit.js
 
 // STYLING //
-// import './App.css'; // Using OG CSS
 import classes from './App.css'; // Using CSS CLASSES
 
 
 // CLASS COMPONENT //
 class App extends Component {
+  constructor (props){
+    super(props);
+    console.log('app js constructor');
+  }
   state = {
     persons:[
       { id: 'asdas', name: 'Max', age: 26},
@@ -20,11 +24,26 @@ class App extends Component {
     showPersons: false
   }
 
+  static getDerivedStateFromProps(props, state) {
+    console.log('app js getDerivedStateFromProps', props);
+    return state;
+  }
+
+  compnentWillMount(){
+      console.log('app js compnentWillMount');
+  }
+
+  componentDidMount() {
+    console.log('app js compnentDidMount');
+  }
+
   // TOGGLE ALL PEOPLE
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
     this.setState({ showPersons: !doesShow })
   }
+
+
 
   // CHANGE NAME
   nameChangedHandler = (e, id) => {
@@ -44,42 +63,16 @@ class App extends Component {
   }
 
   render() {
-
+    console.log('app js render');
     // Conditional Rendering w/ Vanilla JS
     let persons = null; // default
-    let btnClass = '' // Using CSS CLASSES
-
     if (this.state.showPersons) {
-      persons = (
-        <div>
-          {this.state.persons.map((person, index) => {
-            return <Person
-              key={person.id}
-              click={() => this.deletePersonHandler(index)}
-              name={person.name}
-              age={person.age}
-              changed={(e) => this.nameChangedHandler(e, person.id)}/>
-          })}
-        </div>
-      );
-      btnClass = classes.Red // Using CSS CLASSES
+      persons = ( <Persons persons={this.state.persons} clicked={this.deletePersonHandler} changed={this.nameChangedHandler}/>);
     }
-
-    // DYNAMIC CLASSES
-    const assignedClasses = []
-    if (this.state.persons.length <= 2) {
-      assignedClasses.push(classes.red)
-    }
-    if (this.state.persons.length <=1) {
-      assignedClasses.push(classes.bold)
-    }
-
 
     return (
       <div className={classes.App}>
-        <h1>Hi! I'm a React App</h1>
-        <p className={assignedClasses.join(' ')} >This is working</p>
-        <button className={btnClass} onClick={ this.togglePersonsHandler }>Toggle Persons</button>
+        <Cockpit showPersons={this.state.showPersons} persons={this.state.persons} clicked={this.togglePersonsHandler} title={this.props.appTitle}/>
         { persons }
       </div>
     );

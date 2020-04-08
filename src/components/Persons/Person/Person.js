@@ -7,6 +7,7 @@ import classes from './Person.css'; // Using CSS CLASSES
 
 // FUNCTIONAL COMPONENT //
 const person = (props) => {
+  console.log('person js rendering');
   return (
     <div className={classes.Person}>
       <p onClick={props.click}>I'm {props.name} and I am {props.age}</p>
